@@ -1,0 +1,50 @@
+﻿@model LibraryManagement.Entity.StudentAccount
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2 style="text-align:center" >Login</h2>
+
+<style >
+    body {
+        background-color:azure;
+    }
+    .button{
+        background-color:crimson;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        padding: 5px;
+        width: 50;
+        background-color: lightseagreen;
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    <table align="center">
+
+        <tr>
+            <td>Email ID</td>
+            <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>@Html.TextBoxFor(Model => Model.Password)</td>
+        </tr>
+        
+    </table>
+
+    <div>
+       <p> <input type="submit" checked /> </p>
+        <p> Don't have an account?? <a href="/SignUp">SignUp</a></p>
+    </div>
+}
+
