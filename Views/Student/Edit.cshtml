@@ -1,0 +1,47 @@
+﻿@m@*odel LibraryManagement.Repository.Books
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<style>
+
+    table, th, td {
+        border: 1px solid black;
+        padding: 15px;
+        width: 100;
+    }
+
+    input[type="text"] {
+        border: none;
+        padding: 10px;
+    }
+</style>
+
+<h2>Edit</h2>
+@using (Html.BeginForm("Update", "Index", FormMethod.Post))
+{
+    @Html.HiddenFor(Model => Model.Id);
+    <table>
+        <tr>
+            <td>Employee Name : </td>
+            <td>@Html.TextBoxFor(Model => Model.Name)</td>
+        </tr>
+        <tr>
+            <td>Work Type : </td>
+            <td>@Html.TextBoxFor(Model => Model.Author)</td>
+        </tr>
+        <tr>
+            <td>Experience: </td>
+            <td>@Html.TextBoxFor(Model => Model.Subject)</td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type="submit" value="Update" />
+            </td>
+            <td><a href="/Index">Back</a></td>
+        </tr>
+    </table>
+}*@
+

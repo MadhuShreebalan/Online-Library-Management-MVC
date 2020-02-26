@@ -1,0 +1,51 @@
+﻿@model LibraryManagement.Repository.Books
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<style>
+
+    table, th, td {
+        border: 1px solid black;
+        padding: 15px;
+        width: 100;
+    }
+
+    input[type="text"] {
+        border: none;
+        padding: 10px;
+    }
+</style>
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Index", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>Employee ID :</td>
+            <td> @Html.TextBoxFor(Model => Model.Id)</td>
+        </tr>
+        <tr>
+            <td>Employee Name : </td>
+            <td>@Html.TextBoxFor(Model => Model.Name)</td>
+        </tr>
+        <tr>
+            <td>Work Type : </td>
+            <td>@Html.TextBoxFor(Model => Model.Author)</td>
+        </tr>
+        <tr>
+            <td>Experience: </td>
+            <td>@Html.TextBoxFor(Model => Model.Subject)</td>
+        </tr>
+        
+        <tr>
+            <td>
+                <input type="submit" />
+            </td>
+            <td><a href="/Index">Back</a></td>
+        </tr>
+    </table>
+}
+
+

@@ -1,4 +1,4 @@
-﻿@model LibraryManagement.Entity.StudentAccount
+﻿@model LibraryManagement.Entity.Account
 
 @{
     ViewBag.Title = "Login";
@@ -32,11 +32,11 @@
     <table align="center">
 
         <tr>
-            <td>Email ID</td>
+            <td>@Html.LabelFor(Model=>Model.EmailId)</td>
             <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
         </tr>
         <tr>
-            <td>Password</td>
+            <td>@Html.LabelFor(Model=>Model.Password)</td>
             <td>@Html.TextBoxFor(Model => Model.Password)</td>
         </tr>
         

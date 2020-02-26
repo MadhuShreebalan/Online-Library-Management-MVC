@@ -1,7 +1,5 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using LibraryManagement.Repository;
 using LibraryManagement.Entity;
@@ -11,44 +9,44 @@ namespace LibraryManagement.Controllers
     public class StudentController : Controller
     {
         // GET: Student
-        StudentRepository studentRepository;
+        BookRepository bookRepository;
         public StudentController()
         {
-            studentRepository = new StudentRepository();
+            bookRepository = new BookRepository();
         }
         // GET: Index
         public ActionResult Index()
         {
-            IEnumerable<Student> students = studentRepository.GetAllStudents();
-            return View(students);
+            IEnumerable<Books> books = bookRepository.GetAllBooks();
+            return View(books);
         }
         public ActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Student students)
+        public ActionResult Create(Books books)
         {
-            studentRepository.AddStudent(students);
-            TempData["Message"] = "Employee Added Successfully!";
+            bookRepository.AddBook(books);
+            TempData["Message"] = "Book Added Successfully!";
             return RedirectToAction("Index");
         }
 
-        public ActionResult Delete(double id)
+        public ActionResult DeleteBook(int id)
         {
-            studentRepository.DeleteStudent(id);
-            TempData["Message"] = "Employee Deleted Successfully!";
+            bookRepository.DeleteBook(id);
+            TempData["Message"] = "Book Deleted Successfully!";
             return RedirectToAction("Index");
         }
-        public ActionResult Edit(double id)
+        public ActionResult Edit(int id)
         {
-            Student students = studentRepository.GetStudent(id);
-            return View(students);
+            Books books = bookRepository.GetBook(id);
+            return View(books);
         }
         [HttpPost]
-        public ActionResult Update(Student students)
+        public ActionResult Update(Books books)
         {
-            studentRepository.UpdateStudent(students);
+            bookRepository.UpdateBook(books);
             TempData["Message"] = "Employee Details Updated Successfully";
             return RedirectToAction("Index");
         }
