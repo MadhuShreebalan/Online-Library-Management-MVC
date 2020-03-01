@@ -5,7 +5,7 @@
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
-  font-family: sans-serif;
+  font-family: Cambria;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -4386,7 +4386,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   display: block;
   width: 22px;
   height: 2px;
+  vertical-align:middle;
   border-radius: 1px;
+
 }
 .navbar-toggle .icon-bar + .icon-bar {
   margin-top: 4px;
@@ -4398,6 +4400,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-nav {
   margin: 7.5px -15px;
+
 }
 .navbar-nav > li > a {
   padding-top: 10px;

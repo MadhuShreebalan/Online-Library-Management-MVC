@@ -1,0 +1,20 @@
+﻿@model LibraryManagement.Entity.Account
+
+@{
+    ViewBag.Title = "SignIn";
+}
+
+<h2>SignIn</h2>
+
+@using( Html.BeginForm("SignIn", "Account", FormMethod.Post))
+{ 
+
+@Html.LabelFor(Model => Model.EmailId)
+
+@Html.TextBoxFor(Model => Model.EmailId)
+    @Html.ValidationMessageFor(Model => Model.EmailId)
+
+<input type="Submit" />
+
+    }
+

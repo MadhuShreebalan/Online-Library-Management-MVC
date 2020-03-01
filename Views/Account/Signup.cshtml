@@ -3,6 +3,55 @@
 @{
     ViewBag.Title = "Signup";
 }
+<h2 style="text-align:center">SignUp</h2>
+<style>
+    body {
+        background-color: azure;
+    }
 
- `<h2>Signup</h2>
+    .button {
+        background-color: crimson;
+    }
 
+    table, th, td {
+       // border: 1px solid black;
+        padding: 5px;
+        width: 50;
+        background-color: burlywood;
+    }
+
+    p {
+        text-align: center;
+    }
+</style>
+@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+{
+<table align="center">
+
+    <tr>
+        <td>@Html.LabelFor(Model => Model.EmailId)</td>
+        <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
+        
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(Model => Model.Password)</td>
+        <td>@Html.TextBoxFor(Model => Model.Password)</td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(Model => Model.Department)</td>
+        <td>@Html.TextBoxFor(Model => Model.Department)</td>
+    </tr>
+
+
+    <tr>
+        <td>
+            <input type="submit" />
+        </td>
+        <td>Already have an account?? @Html.ActionLink("back", "Login", "Account")</td>
+    </tr>
+</table>
+}
+
+ `

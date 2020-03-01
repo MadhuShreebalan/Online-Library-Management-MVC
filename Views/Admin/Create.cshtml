@@ -1,0 +1,72 @@
+﻿@model LibraryManagement.Repository.Books
+
+@{
+    ViewBag.Title = "Create";
+}
+<style>
+    body {
+        background-color: azure;
+    }
+
+    .button {
+        background-color: crimson;
+    }
+
+    table, th, td {
+        border: 1px solid black;
+        padding: 5px;
+        width: 50;
+        background-color: lightseagreen;
+    }
+   span{
+       color:red;
+   }
+
+    p {
+        text-align: center;
+    }
+</style>
+<h2 style="text-align:center" ;>Create</h2>
+
+@using (Html.BeginForm("Create", "Index", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(Model => Model.Id)</td>
+            <td>
+               
+                @Html.TextBoxFor(Model => Model.Id)  <span> @Html.ValidationMessageFor(Model => Model.Id)</span>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(Model => Model.Name) </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Name)
+                @Html.ValidationMessageFor(Model => Model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(Model => Model.Author) </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Author)
+                @Html.ValidationMessageFor(Model => Model.Author)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(Model => Model.Subject) </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Subject)
+                @Html.ValidationMessageFor(Model => Model.Subject)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" />
+            </td>
+            <td> @Html.ActionLink("back", "Login", "Account")</td>
+        </tr>
+    </table>
+}
+
+

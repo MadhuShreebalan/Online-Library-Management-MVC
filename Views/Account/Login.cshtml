@@ -4,47 +4,55 @@
     ViewBag.Title = "Login";
 }
 
-<h2 style="text-align:center" >Login</h2>
+<h2 style="text-align:center">Login</h2>
 
-<style >
+<style>
     body {
-        background-color:azure;
-    }
-    .button{
-        background-color:crimson;
+        background-color: azure;
     }
 
-    table, th, td {
-        border: 1px solid black;
+    .button {
+        background-color: crimson;
+    }
+
+    div {
+        //border: 1px solid black;
         padding: 5px;
-        width: 50;
-        background-color: lightseagreen;
+        width: 5%;
+        background-color: burlywood;
+        line-height: 15px;
+        padding-left:980px;
     }
 
     p {
         text-align: center;
+    }
+
+    span {
+        color: red;
     }
 </style>
 
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <table align="center">
-
-        <tr>
-            <td>@Html.LabelFor(Model=>Model.EmailId)</td>
-            <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(Model=>Model.Password)</td>
-            <td>@Html.TextBoxFor(Model => Model.Password)</td>
-        </tr>
-        
-    </table>
-
     <div>
-       <p> <input type="submit" checked /> </p>
-        <p> Don't have an account?? <a href="/SignUp">SignUp</a></p>
+
+
+        <p>
+            @Html.LabelFor(Model => Model.EmailId)
+
+            @Html.TextBoxFor(Model => Model.EmailId)<span> @Html.ValidationMessageFor(Model => Model.EmailId)</span>
+        </p>
+
+        <p style="text-align:center">
+            @Html.LabelFor(Model => Model.Password)
+
+            @Html.TextBoxFor(Model => Model.Password)<span> @Html.ValidationMessageFor(Model => Model.Password)</span>
+            <input type="submit" />
+        </p>
+        <p> Don't have an account?? @Html.ActionLink("SignUp", "Signup", "Account")</p>
     </div>
 }
 
+@*align="center" style="border-bottom-color:burlywood"*@
