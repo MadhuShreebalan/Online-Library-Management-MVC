@@ -1,0 +1,27 @@
+﻿
+        @{
+            ViewBag.Title = "_MasterPage";
+        }
+
+       
+        <head>
+            <title>@ViewBag.Title-Library Management Online</title>
+            <link rel="stylesheet" href="~/Content/_Style.css" type="text/css" />
+        </head>
+        <body>
+            <div class="navbar" style="color:darkseagreen">
+                <ul>
+                    <li class="list">
+                        @Html.ActionLink("Library Management", "Index", "Admin")
+                        </li>
+                    <li class="list">
+                        @Html.ActionLink("Login", "Login", "Account")
+                    </li>
+                </ul>
+            </div>
+            <div>
+                @RenderBody()
+            </div>
+        </body>
+
+

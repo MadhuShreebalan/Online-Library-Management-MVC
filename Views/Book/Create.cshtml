@@ -1,7 +1,8 @@
-﻿@model LibraryManagement.Repository.Books
+﻿@model LibraryManagement.Models.LoginViewModel
 
 @{
     ViewBag.Title = "Create";
+    <link href="~/Content/_Style.css" rel="stylesheet" />
 }
 <style>
     body {
@@ -18,9 +19,10 @@
         width: 50;
         background-color: lightseagreen;
     }
-   span{
-       color:red;
-   }
+
+    span {
+        color: red;
+    }
 
     p {
         text-align: center;
@@ -28,14 +30,14 @@
 </style>
 <h2 style="text-align:center" ;>Create</h2>
 
-@using (Html.BeginForm("Create", "Index", FormMethod.Post))
+@using (Html.BeginForm("Create", "Book", FormMethod.Post))
 {
     <table>
         <tr>
             <td>@Html.LabelFor(Model => Model.Id)</td>
             <td>
-               
-                @Html.TextBoxFor(Model => Model.Id)  <span> @Html.ValidationMessageFor(Model => Model.Id)</span>
+                @Html.TextBoxFor(Model => Model.Id)
+                <span> @Html.ValidationMessageFor(Model => Model.Id)</span>
             </td>
         </tr>
         <tr>

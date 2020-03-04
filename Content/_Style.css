@@ -1,0 +1,28 @@
+﻿﻿ul {
+    list-style-type: none;
+    overflow: hidden;
+}
+.list{
+    list-style-type: none;
+    float:right;
+}
+body {
+     background-image: url('Login_pic.jpg');
+}
+.navbar {
+    padding: 20px;
+    background-color:blanchedalmond;
+}
+
+li a {
+    list-style-type:none;
+    display:flex;
+    color:burlywood;
+    text-align:left;
+    padding: 1px 2px;
+    text-decoration:solid;
+}
+
+    li a:hover {
+        background-color: green;
+    }

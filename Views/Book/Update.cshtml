@@ -1,0 +1,46 @@
+﻿@model  LibraryManagement.Repository.Books
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<style>
+
+    table, th, td {
+        border: 1px solid black;
+        padding: 15px;
+        width: 10px;
+    }
+</style>
+<h2>Welcome</h2>
+@if (TempData["Message"] != null)
+{
+    @Html.Label((string)TempData["Message"]);
+}
+<br />
+@Html.ActionLink("Add New Books", "Create")
+<br />
+<div class=" Heading">
+    <tr>
+        <th>Id</th>
+        <th> Name</th>
+        <th>Author</th>
+        <th>Subject</th>
+    
+    </tr>
+    @foreach (LibraryManagement.Repository.Books books in book)
+    {
+        <tr>
+            <td>@books.Id</td>
+            <td>@books.Name</td>
+            <td>@books.Author</td>
+            <td>@books.Subject</td>
+           
+            <td>
+                @Html.ActionLink("Edit / ", "Edit", new { id = books.Id })
+                @Html.ActionLink("Delete", "Delete", new { id = books.Id })
+            </td>
+        </tr>
+    }
+</div>
+

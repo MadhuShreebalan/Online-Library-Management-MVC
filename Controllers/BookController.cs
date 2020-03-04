@@ -1,14 +1,14 @@
 ﻿using LibraryManagement.Repository;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using LibraryManagement.Entity;
 
-namespace LibraryManagement.Controllers
+namespace LibraryManagement.Models
 {
-    public class AdminController : Controller
+    public class BookController : Controller
     {
-        // GET: Student
         BookRepository bookRepository;
-        public AdminController()
+        public BookController()
         {
             bookRepository = new BookRepository();
         }
@@ -22,11 +22,15 @@ namespace LibraryManagement.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Books books)
+        public ActionResult Create(Books book)
         {
-            bookRepository.AddBook(books);
-            TempData["Message"] = "Book Added Successfully!";
-            return RedirectToAction("Index");
+           if (ModelState.IsValid)
+            {
+                bookRepository.AddBook(book);
+                TempData["Message"] = "Book Added Successfully!";
+                return RedirectToAction("Index");
+           }
+           return View();
         }
         public ActionResult DeleteBook(int id)
         {

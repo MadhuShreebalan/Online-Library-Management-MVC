@@ -1,4 +1,4 @@
-﻿@m@*odel LibraryManagement.Repository.Books
+﻿@model LibraryManagement.Models
 
 @{
     ViewBag.Title = "Edit";
@@ -9,7 +9,7 @@
     table, th, td {
         border: 1px solid black;
         padding: 15px;
-        width: 100;
+        width: 10px;
     }
 
     input[type="text"] {
@@ -24,15 +24,15 @@
     @Html.HiddenFor(Model => Model.Id);
     <table>
         <tr>
-            <td>Employee Name : </td>
+            <td> Name : </td>
             <td>@Html.TextBoxFor(Model => Model.Name)</td>
         </tr>
         <tr>
-            <td>Work Type : </td>
+            <td>Author : </td>
             <td>@Html.TextBoxFor(Model => Model.Author)</td>
         </tr>
         <tr>
-            <td>Experience: </td>
+            <td>Subject: </td>
             <td>@Html.TextBoxFor(Model => Model.Subject)</td>
         </tr>
         
@@ -43,5 +43,5 @@
             <td><a href="/Index">Back</a></td>
         </tr>
     </table>
-}*@
+}
 

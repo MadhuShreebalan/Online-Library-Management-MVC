@@ -1,0 +1,59 @@
+﻿@model IEnumerable<LibraryManagement.Models>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Display</h2>
+<style>
+    body {
+        background-color: azure;
+    }
+    .button {
+        background-color: crimson;
+    }
+    div {
+        padding: 5px;
+        width: 5%;
+        background-color: burlywood;
+        line-height: 15px;
+        padding-left: 80px;
+        text-align: center;
+    }
+    p {
+        text-align: center;
+    }
+    span {
+        text-align: right;
+        color: red;
+    }
+</style>
+@Html.ActionLink("Create New Book", "Create")
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Subject</th>
+    </tr>
+</table>
+
+    @foreach (LibraryManagement.Repository book in Model)
+    {
+
+        <table cellspacing="100">
+            <tr>
+            <td style="s" >@book.Id</td>
+            <td >@book.Name</td>
+            <td >@book.Subject</td>
+            <td >@book.Author</td>
+               </tr>
+        </table>
+
+    }
+
+
+}
+
+

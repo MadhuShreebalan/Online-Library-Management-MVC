@@ -14,9 +14,9 @@
     }
 
     table, th, td {
-       // border: 1px solid black;
+       
         padding: 5px;
-        width: 50;
+        width: 5px;
         background-color: burlywood;
     }
 
@@ -31,7 +31,7 @@
     <tr>
         <td>@Html.LabelFor(Model => Model.EmailId)</td>
         <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
-        
+
     </tr>
 
     <tr>
@@ -43,13 +43,17 @@
         <td>@Html.LabelFor(Model => Model.Department)</td>
         <td>@Html.TextBoxFor(Model => Model.Department)</td>
     </tr>
+    <tr>
+        <td>@Html.LabelFor(Model => Model.Phone)</td>
+        <td>@Html.TextBoxFor(Model => Model.Phone)</td>
+    </tr>
 
 
     <tr>
         <td>
             <input type="submit" />
         </td>
-        <td>Already have an account?? @Html.ActionLink("back", "Login", "Account")</td>
+        <td>Back @Html.ActionLink("back", "Login", "Account")</td>
     </tr>
 </table>
 }

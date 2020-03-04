@@ -1,58 +1,60 @@
-﻿@model LibraryManagement.Entity.Account
+﻿@model LibraryManagement.Models.LoginViewModel
 
 @{
     ViewBag.Title = "Login";
+   
 }
+  <!DOCTYPE html>
+    <html>
+    <head>
+        <link href="~/Content/_Style.css" rel="stylesheet" />
+
+    </head>
+<body>
 
 <h2 style="text-align:center">Login</h2>
-
 <style>
-    body {
-        background-color: azure;
-    }
-
     .button {
         background-color: crimson;
     }
-
-    div {
-        //border: 1px solid black;
-        padding: 5px;
-        width: 5%;
-        background-color: burlywood;
-        line-height: 15px;
-        padding-left:980px;
+    .box {
+        border: 5px solid blanchedalmond;
+        display: inline-block;
+        text-align: center;
+        flood-color:red;
     }
-
-    p {
+    div {
         text-align: center;
     }
 
+    p {
+        text-emphasis-color:cyan;
+        text-align: center;
+    }
     span {
+        text-align: center;
         color: red;
     }
 </style>
-
-
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <div>
-
-
+    <div class="box">
         <p>
             @Html.LabelFor(Model => Model.EmailId)
-
-            @Html.TextBoxFor(Model => Model.EmailId)<span> @Html.ValidationMessageFor(Model => Model.EmailId)</span>
+            @Html.TextBoxFor(Model => Model.EmailId)
+            <span> @Html.ValidationMessageFor(Model => Model.EmailId)</span>
         </p>
-
-        <p style="text-align:center">
+        <p>
             @Html.LabelFor(Model => Model.Password)
-
-            @Html.TextBoxFor(Model => Model.Password)<span> @Html.ValidationMessageFor(Model => Model.Password)</span>
-            <input type="submit" />
+            @Html.TextBoxFor(Model => Model.Password)
+            <span> @Html.ValidationMessageFor(Model => Model.Password)</span>
         </p>
-        <p> Don't have an account?? @Html.ActionLink("SignUp", "Signup", "Account")</p>
+        <div>
+            <input type="submit" style="border-color:cadetblue" />
+            <p> Don't have an account?? @Html.ActionLink("SignUp", "Signup", "Account")</p>
+        </div>
+
     </div>
 }
-
-@*align="center" style="border-bottom-color:burlywood"*@
+    </body>
+</html>
