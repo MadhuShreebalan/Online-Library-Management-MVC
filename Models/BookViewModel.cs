@@ -6,13 +6,19 @@ namespace LibraryManagement.Models
     [Table("TableBooks")]
     public class BookViewModel
     {
+        [Display(Name = "Author")]
+        [Required]
         public string Author { get; set; }
+        [Display(Name = "Name")]
+        [Required]
         public string Name { get; set; }
-        public string Subject { get; set; }
-        [Key]
-        public string Id { get; set; }
 
-        public CategoryViewModel CategoryViewModel { get; set; }
+        [Display(Name = "Subject")]
+        [StringLength(10)]
+        public string Subject { get; set; }
+        [Required]
+        public string BookId { get; set; }
+
 
     }
 }

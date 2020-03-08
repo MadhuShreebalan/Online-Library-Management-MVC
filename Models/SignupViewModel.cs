@@ -4,15 +4,23 @@ namespace LibraryManagement.Models
 {
     public class SignupViewModel
     {
-        [RegularExpression(@"^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$")]
+       [Required]
+        public int AccountId { get; set; }
+
+        [Required]
+        [DataType(DataType.EmailAddress,ErrorMessage = "Email is not valid" )]
         public string EmailId { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required]
         [StringLength(5)]
         public string Department { get; set; }
 
-        [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Please Enter Valid Mobile Number.")]
+        [Required]
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model LibraryManagement.Entity.Account
+﻿@model LibraryManagement.Models.SignupViewModel
 
 @{
     ViewBag.Title = "Signup";
@@ -24,10 +24,10 @@
         text-align: center;
     }
 </style>
-@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
+@using(Html.BeginForm("SignUp","Account",FormMethod.Post))
 {
+    @Html.AntiForgeryToken()
 <table align="center">
-
     <tr>
         <td>@Html.LabelFor(Model => Model.EmailId)</td>
         <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
@@ -51,11 +51,12 @@
 
     <tr>
         <td>
-            <input type="submit" />
+            <input type="submit" value="Create" />
         </td>
-        <td>Back @Html.ActionLink("back", "Login", "Account")</td>
+        <td> @Html.ActionLink("back", "Login", "Account")</td>
     </tr>
 </table>
+
 }
 
  `

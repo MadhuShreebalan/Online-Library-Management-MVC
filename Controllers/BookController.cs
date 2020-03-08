@@ -14,7 +14,7 @@ namespace LibraryManagement.Models
         }
         public ActionResult Index()
         {
-            IEnumerable<Books> books = bookRepository.GetAllBooks();
+            IEnumerable<Book> books = bookRepository.GetAllBooks();
             return View(books);
         }
         public ActionResult Create()
@@ -22,15 +22,15 @@ namespace LibraryManagement.Models
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Books book)
+        public ActionResult Create(Book book)
         {
-           if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 bookRepository.AddBook(book);
                 TempData["Message"] = "Book Added Successfully!";
                 return RedirectToAction("Index");
-           }
-           return View();
+            }
+            return View();
         }
         public ActionResult DeleteBook(int id)
         {
@@ -40,11 +40,11 @@ namespace LibraryManagement.Models
         }
         public ActionResult Edit(int id)
         {
-            Books books = bookRepository.GetBook(id);
+            Book books = bookRepository.GetBook(id);
             return View(books);
         }
         [HttpPost]
-        public ActionResult Update(Books books)
+        public ActionResult Update(Book books)
         {
             bookRepository.UpdateBook(books);
             TempData["Message"] = "Employee Details Updated Successfully";

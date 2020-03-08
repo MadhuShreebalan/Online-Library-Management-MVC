@@ -1,4 +1,4 @@
-﻿@model IEnumerable<LibraryManagement.Models>
+﻿@model IEnumerable<LibraryManagement.Entity.Book>
 
 @{
     ViewBag.Title = "Index";
@@ -32,19 +32,19 @@
 
 <table>
     <tr>
-        <th>Id</th>
+       @* <th>Id</th>*@
         <th>Name</th>
         <th>Author</th>
         <th>Subject</th>
     </tr>
 </table>
 
-    @foreach (LibraryManagement.Repository book in Model)
+    @foreach (var book in Model)
     {
 
         <table cellspacing="100">
             <tr>
-            <td style="s" >@book.Id</td>
+         @*   <td >@book.Id</td>*@
             <td >@book.Name</td>
             <td >@book.Subject</td>
             <td >@book.Author</td>

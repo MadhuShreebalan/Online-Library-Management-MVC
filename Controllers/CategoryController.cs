@@ -4,13 +4,14 @@ using System.Web.Mvc;
 
 namespace LibraryManagement.Controllers
 {
-    public class LibraryController : Controller
+    public class CategoryController : Controller
     {
         LibraryManagementContext db = new LibraryManagementContext();
         public ActionResult Index()
         {
-           db.Category.ToList();
+            db.Categorys.ToList();
+            //db.Books.ToList();
             return View();
         }
     }
-}
+} 

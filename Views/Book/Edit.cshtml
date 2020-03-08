@@ -1,4 +1,4 @@
-﻿@model LibraryManagement.Models
+﻿@model LibraryManagement.Entity.Book
 
 @{
     ViewBag.Title = "Edit";
@@ -21,7 +21,7 @@
 <h2>Edit</h2>
 @using (Html.BeginForm("Update", "Index", FormMethod.Post))
 {
-    @Html.HiddenFor(Model => Model.Id);
+   // @Html.HiddenFor(Model => Model.Id);
     <table>
         <tr>
             <td> Name : </td>

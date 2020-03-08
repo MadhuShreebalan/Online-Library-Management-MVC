@@ -1,4 +1,4 @@
-﻿@model LibraryManagement.Models.LoginViewModel
+﻿@model LibraryManagement.Entity.Book
 
 @{
     ViewBag.Title = "Create";
@@ -33,13 +33,13 @@
 @using (Html.BeginForm("Create", "Book", FormMethod.Post))
 {
     <table>
-        <tr>
+        @*<tr>
             <td>@Html.LabelFor(Model => Model.Id)</td>
             <td>
                 @Html.TextBoxFor(Model => Model.Id)
-                <span> @Html.ValidationMessageFor(Model => Model.Id)</span>
+                @Html.ValidationMessageFor(Model => Model.Id)
             </td>
-        </tr>
+        </tr>*@
         <tr>
             <td>@Html.LabelFor(Model => Model.Name) </td>
             <td>

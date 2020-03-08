@@ -1,4 +1,4 @@
-﻿@model  LibraryManagement.Repository.Books
+﻿@model  LibraryManagement.Entity.Book
 
 @{
     ViewBag.Title = "Display";
@@ -20,27 +20,29 @@
 <br />
 @Html.ActionLink("Add New Books", "Create")
 <br />
-<div class=" Heading">
-    <tr>
-        <th>Id</th>
-        <th> Name</th>
-        <th>Author</th>
-        <th>Subject</th>
-    
-    </tr>
-    @foreach (LibraryManagement.Repository.Books books in book)
+<table class=" Heading">
+
+    @*<label>Id</label>*@
+    <th> Name</th>
+    <th>Author</th>
+    <th>Subject</th>
+</table>
+
+<table>
+
+    @foreach (var books in Model)
     {
         <tr>
             <td>@books.Id</td>
             <td>@books.Name</td>
             <td>@books.Author</td>
             <td>@books.Subject</td>
-           
+
             <td>
                 @Html.ActionLink("Edit / ", "Edit", new { id = books.Id })
                 @Html.ActionLink("Delete", "Delete", new { id = books.Id })
             </td>
         </tr>
     }
-</div>
+</table>
 
