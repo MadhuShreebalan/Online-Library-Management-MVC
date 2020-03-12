@@ -33,7 +33,7 @@ namespace LibraryManagement.Models
         {
             if (ModelState.IsValid)
             {
-                    AccountBl accountBl = new AccountBl();
+                    AccountBL accountBl = new AccountBL();
                     Account account = new Account();
                     account.AccountId = signupViewModel.AccountId;
                     account.Department = signupViewModel.Department;

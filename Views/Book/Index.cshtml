@@ -9,9 +9,11 @@
     body {
         background-color: azure;
     }
+
     .button {
         background-color: crimson;
     }
+
     div {
         padding: 5px;
         width: 5%;
@@ -20,9 +22,11 @@
         padding-left: 80px;
         text-align: center;
     }
+
     p {
         text-align: center;
     }
+
     span {
         text-align: right;
         color: red;
@@ -32,28 +36,50 @@
 
 <table>
     <tr>
-       @* <th>Id</th>*@
+        @* <th>Id</th>*@
         <th>Name</th>
         <th>Author</th>
         <th>Subject</th>
     </tr>
 </table>
 
-    @foreach (var book in Model)
-    {
+@foreach (var book in Model)
+{
 
-        <table cellspacing="100">
-            <tr>
-         @*   <td >@book.Id</td>*@
-            <td >@book.Name</td>
-            <td >@book.Subject</td>
-            <td >@book.Author</td>
-               </tr>
-        </table>
+    <table cellspacing="100">
+        <tr>
+            @*<td>@book.BookId</td>*@
+            <td>@book.Name</td>
+            <td>@book.Subject</td>
+            <td>@book.Author</td>
+        </tr>
+    </table>
 
-    }
+}
 
 
 }
 
+@*@model LibraryManagement.Entity.Category
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryDescription)
+        </th>
+        <th></th>
+    </tr>
+
+
+</table>*@
 

@@ -6,6 +6,8 @@ namespace LibraryManagement.Models
     [Table("TableBooks")]
     public class BookViewModel
     {
+        [Required]
+        public int BookId { get; internal set; }
         [Display(Name = "Author")]
         [Required]
         public string Author { get; set; }
@@ -14,11 +16,8 @@ namespace LibraryManagement.Models
         public string Name { get; set; }
 
         [Display(Name = "Subject")]
-        [StringLength(10)]
+        [StringLength(20)]
         public string Subject { get; set; }
-        [Required]
-        public string BookId { get; set; }
-
-
+ 
     }
 }

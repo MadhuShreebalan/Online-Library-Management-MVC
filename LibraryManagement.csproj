@@ -140,10 +140,6 @@
     <Compile Include="Migrations\202003060532188_File.designer.cs">
       <DependentUpon>202003060532188_File.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003060545526_LibraryV1.cs" />
-    <Compile Include="Migrations\202003060545526_LibraryV1.designer.cs">
-      <DependentUpon>202003060545526_LibraryV1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -162,11 +158,16 @@
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\Book\Create.cshtml" />
     <Content Include="Views\Book\Edit.cshtml" />
-    <Content Include="Views\Book\Update.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Shared\_Master.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\Create.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Category\CategoryDetails.cshtml" />
+    <Content Include="Views\Category\Detail.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Book\BookDetails.cshtml" />
+    <Content Include="Views\Book\UpdateBook.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -194,9 +195,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003060532188_File.resx">
       <DependentUpon>202003060532188_File.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003060545526_LibraryV1.resx">
-      <DependentUpon>202003060545526_LibraryV1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

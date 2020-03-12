@@ -1,54 +1,84 @@
-﻿using LibraryManagement.Repository;
-using System.Collections.Generic;
+﻿using LibraryManagement.DAL;
 using System.Web.Mvc;
 using LibraryManagement.Entity;
+using LibraryManagement.BL;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace LibraryManagement.Models
 {
     public class BookController : Controller
     {
-        BookRepository bookRepository;
-        public BookController()
-        {
-            bookRepository = new BookRepository();
-        }
-        public ActionResult Index()
-        {
-            IEnumerable<Book> books = bookRepository.GetAllBooks();
-            return View(books);
-        }
+        BookRepository bookRepository = new BookRepository();
         public ActionResult Create()
+        {
+            LibraryManagementContext db = new LibraryManagementContext();
+            List<Category> categories = db.Categorys.ToList();
+            ViewBag.categories = new SelectList(categories, "CategoryId", "CategoryName");
+
+            return View();
+        }
+        public ActionResult Edit()
         {
             return View();
         }
+        public ActionResult BookDetails()
+        {
+            BookBL bookBL = new BookBL();
+            bookBL.BookDetails();
+            return View();
+        }
         [HttpPost]
-        public ActionResult Create(Book book)
+        public ActionResult Create(BookViewModel bookViewModel)
         {
             if (ModelState.IsValid)
             {
-                bookRepository.AddBook(book);
+                BookBL bookBL = new BookBL();
+                Book book = new Book();
+                book.BookId = bookViewModel.BookId;
+                book.Author = bookViewModel.Author;
+                book.Name = bookViewModel.Name;
+                book.Subject = bookViewModel.Subject;
+                bookBL.AddMethod(book);
                 TempData["Message"] = "Book Added Successfully!";
                 return RedirectToAction("Index");
             }
+            else
+            {
+                ModelState.AddModelError("", "Some error occured");
+            }
+            using (LibraryManagementContext db = new LibraryManagementContext())
+            {
+                List<Category> categories = db.Categorys.ToList();
+                ViewBag.categories = new SelectList(categories, "CategoryId", "CategoryName");
+            }
             return View();
         }
-        public ActionResult DeleteBook(int id)
+        [HttpPost]
+        public ActionResult DeleteBook(int bookId)
         {
-            bookRepository.DeleteBook(id);
+            BookBL bookBL = new BookBL();
+            Book book = new Book();
+            bookBL.DeleteBook(bookId);
             TempData["Message"] = "Book Deleted Successfully!";
             return RedirectToAction("Index");
         }
-        public ActionResult Edit(int id)
-        {
-            Book books = bookRepository.GetBook(id);
-            return View(books);
-        }
         [HttpPost]
-        public ActionResult Update(Book books)
+        public ActionResult Edit(int bookId)
         {
-            bookRepository.UpdateBook(books);
-            TempData["Message"] = "Employee Details Updated Successfully";
-            return RedirectToAction("Index");
+            BookBL bookBL = new BookBL();
+            Book book = new Book();
+            bookBL.Edit(bookId);
+            return RedirectToAction("BookDetails");
         }
+        
+        //public ActionResult UpdateBook(int bookId)
+        //{
+        //    BookBL bookBL = new BookBL();
+        //    Book book = new Book();
+        //    bookBL.UpdateBook(bookId);
+        //    TempData["Message"] = "Book Details Updated Successfully";
+        //    return RedirectToAction("BookDetails");
+        //}
     }
 }

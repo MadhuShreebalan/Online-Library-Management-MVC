@@ -1,0 +1,38 @@
+﻿@model LibraryManagement.Entity.Category
+
+@{
+    ViewBag.Title = "Edit";
+    
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm("Edit", "Category", FormMethod.Post))
+{
+    @Html.HiddenFor(Model => Model.CategoryId);
+    <table border="1" cellspacing="30">
+        <tr>
+            <td> @Html.LabelFor(model => model.CategoryName)</td>
+
+            <td>
+                @Html.TextBoxFor(model => model.CategoryName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryName)
+            </td>
+        </tr>
+        <tr>
+            <td> @Html.LabelFor(model => model.CategoryDescription)</td>
+
+            <td>
+                @Html.TextBoxFor(model => model.CategoryDescription, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CategoryDescription)
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <input type="submit" value="Update" />
+            </td>
+            <td><a href="/Index">Back</a></td>
+        </tr>
+    </table>
+}

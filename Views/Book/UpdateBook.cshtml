@@ -1,0 +1,63 @@
+﻿@model  IEnumerable<LibraryManagement.Entity.Book>
+
+@{
+    ViewBag.Title = "UpdateBook";
+}
+
+<h2>UpdateBook</h2>
+
+<style>
+
+    table, th, td {
+        border: 1px solid black;
+        padding: 15px;
+        width: 10px;
+    }
+</style>
+<h2>Welcome</h2>
+@if (TempData["Message"] != null)
+{
+    @Html.Label((string)TempData["Message"]);
+}
+<br />
+@Html.ActionLink("Add New Books", "Create")
+<br />
+<table class=" Heading">
+    <tr>
+        <th>Id</th>
+        <th> Name</th>
+        <th>Author</th>
+        <th>Subject</th>
+    </tr>
+
+    @foreach (var book in Model)
+    {
+
+        <tr>
+            <td>@book.BookId</td>
+            <td>@book.Name</td>
+            <td>@book.Author</td>
+            <td>@book.Subject</td>
+            <td>
+                @Html.HiddenFor(modelItem => book.BookId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => book.Subject)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit / ", "Edit", new { BookId = book.BookId })|
+                @Html.ActionLink("Delete", "Delete", new { BookId = book.BookId })
+            </td>
+        </tr>
+
+    }
+</table>
+
+

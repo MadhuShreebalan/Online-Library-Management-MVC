@@ -6,9 +6,11 @@ namespace LibraryManagement.Models
     [Table("TableCategory")]
     public class CategoryViewModel
     {
-     
+        [Required]
         public int CategoryId { get; set; }
-        public int CategoryName { get; set; }
-        public int CategoryDescription { get; set; }
+        [Required]
+        public string CategoryName { get; set; }
+        [Required]
+        public string CategoryDescription { get; set; }
     }
 }

@@ -1,0 +1,23 @@
+﻿@model LibraryManagement.Entity.Category
+
+@{
+    ViewBag.Title = "Detail";
+    <a href="~/Content/Category_page.jfif">~/Content/Category_page.jfif</a>
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryDescription)
+        </th>
+        <th></th>
+    </tr>
+
+
+</table>
