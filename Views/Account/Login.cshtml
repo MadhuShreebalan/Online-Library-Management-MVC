@@ -1,6 +1,6 @@
 ﻿@model LibraryManagement.Models.LoginViewModel
 
-@{
+@*@{
     ViewBag.Title = "Login";
    
 }
@@ -36,25 +36,26 @@
         color: red;
     }
 </style>
+@model MobileShopping.Models.LoginModel*@
+
+@{
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/UserStyleSheet.css" rel="stylesheet" />
 @using (Html.BeginForm("Login", "Account", FormMethod.Post))
 {
-    <div class="box">
-        <p>
-            @Html.LabelFor(Model => Model.EmailId)
-            @Html.TextBoxFor(Model => Model.EmailId)
-            <span> @Html.ValidationMessageFor(Model => Model.EmailId)</span>
-        </p>
-        <p>
-            @Html.LabelFor(Model => Model.Password)
-            @Html.TextBoxFor(Model => Model.Password)
-            <span> @Html.ValidationMessageFor(Model => Model.Password)</span>
-        </p>
-        <div>
-            <input type="submit" style="border-color:cadetblue" />
-            <p> Don't have an account?? @Html.ActionLink("SignUp", "Signup", "Account")</p>
-        </div>
-
-    </div>
+    @Html.AntiForgeryToken()
+<div class="LoginPage">
+    <img src="~/Content/icons8-account-30.png" class="loginImage" />
+    <h1 class="LoginTitle">Login Here</h1>
+    <div class="LblLogin">@Html.LabelFor(model => model.EmailId)</div>
+    <div class="TxtLogin">@Html.TextBoxFor(model => model.EmailId)</div>
+    <div class="ValidateLogin">@Html.ValidationMessageFor(model => model.EmailId)</div>
+    <div class="LblLogin">@Html.LabelFor(model => model.Password)</div>
+    <div class="TxtLogin">@Html.PasswordFor(model => model.Password, new { @maxlength = "16" })</div>
+    <div class="ValidateLogin">@Html.ValidationMessageFor(model => model.Password)</div>
+    <div class="Submit"><input type="submit" value="Login" /></div>
+    <div class="ForgotPassword">@Html.ActionLink("Forgot Password?", "SignUp", "Account", null, new { @class = "Link" })</div>
+    <div class="RegisterUser">@Html.ActionLink("New User? Register", "SignUp", "Account",null,new { @class = "Link"})</div>
+</div>
 }
-    </body>
-</html>

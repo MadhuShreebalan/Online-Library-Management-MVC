@@ -8,7 +8,7 @@ namespace LibraryManagement.Models
         public string EmailId { get; set; }
         
         [Required(ErrorMessage = "Password is required")]
-        [Range(8, 16)]
+        [Range(7, 16)]
         public string Password { get; set; }
     }
 }

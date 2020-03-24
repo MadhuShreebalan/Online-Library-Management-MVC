@@ -1,0 +1,32 @@
+﻿@model  IEnumerable<LibraryManagement.Entity.Account>
+
+@{
+    ViewBag.Title = "UserDetails";
+    Layout = null;
+}
+
+<h2>UserDetails</h2>
+
+<table align="center" border="1">
+    <tr>
+        <th> @Html.DisplayNameFor(model => model.EmailId)</th>
+        <th> @Html.DisplayNameFor(model => model.Department)</th>
+        <th> @Html.DisplayNameFor(model => model.Phone)</th>
+        <th> @Html.DisplayNameFor(model => model.Role)</th>
+   
+    </tr>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => user.EmailId)</td>
+            <td>@Html.DisplayFor(model => user.Department)</td>
+            <td>@Html.DisplayFor(model => user.Phone)</td>
+            <td>@Html.DisplayFor(model => user.Role)</td>
+           
+            <td>
+                @Html.ActionLink("Edit", "EditUser") |
+                @Html.ActionLink("Delete", "DeleteUser")|
+            </td>
+        </tr>
+    }
+</table>

@@ -44,6 +44,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.4.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -136,11 +139,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003060532188_File.cs" />
-    <Compile Include="Migrations\202003060532188_File.designer.cs">
-      <DependentUpon>202003060532188_File.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModel.cs" />
     <Compile Include="Models\BookViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
@@ -160,14 +159,13 @@
     <Content Include="Views\Book\Edit.cshtml" />
     <Content Include="Views\Book\Index.cshtml" />
     <Content Include="Views\Shared\_Master.cshtml" />
-    <Content Include="Views\Category\Index.cshtml" />
-    <Content Include="Views\Category\Create.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
     <Content Include="Views\Category\CategoryDetails.cshtml" />
     <Content Include="Views\Category\Detail.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Book\BookDetails.cshtml" />
-    <Content Include="Views\Book\UpdateBook.cshtml" />
+    <Content Include="Views\Book\Updatebook.cshtml" />
+    <Content Include="Views\Account\UserDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -187,15 +185,6 @@
       <Project>{d8a84dd9-e68d-414e-a33c-71f44b70f8f6}</Project>
       <Name>LibraryManagement.Entity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LibraryManagement.Repository\LibraryManagement.DAL.csproj">
-      <Project>{53b046e8-9130-4b44-b788-c2d4789f82d2}</Project>
-      <Name>LibraryManagement.DAL</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003060532188_File.resx">
-      <DependentUpon>202003060532188_File.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

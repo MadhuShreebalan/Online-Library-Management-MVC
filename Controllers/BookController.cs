@@ -1,84 +1,78 @@
-﻿using LibraryManagement.DAL;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using LibraryManagement.Entity;
 using LibraryManagement.BL;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace LibraryManagement.Models
 {
+   // [Authorize(Roles ="Admin")]
     public class BookController : Controller
     {
-        BookRepository bookRepository = new BookRepository();
+        Book book = new Book();
+        BookBL bookBL = new BookBL();
+
         public ActionResult Create()
         {
-            LibraryManagementContext db = new LibraryManagementContext();
-            List<Category> categories = db.Categorys.ToList();
-            ViewBag.categories = new SelectList(categories, "CategoryId", "CategoryName");
-
+            List<Category> categorys = bookBL.BindCategory();
+            ViewBag.categories = new SelectList(categorys, "CategoryId", "CategoryName");
             return View();
         }
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            book = bookBL.GetBook(id);
+            List<Category> categorys = bookBL.BindCategory();
+            ViewBag.categories = new SelectList(categorys, "CategoryId", "CategoryName");
+            return View(book);
         }
         public ActionResult BookDetails()
         {
-            BookBL bookBL = new BookBL();
-            bookBL.BookDetails();
-            return View();
+            List<Book> books = bookBL.BookDetails();
+            return View(books);
         }
+        public ActionResult Delete(int id)
+        {
+            bookBL.DeleteBook(id);
+            return RedirectToAction("BookDetails");
+        }
+
         [HttpPost]
         public ActionResult Create(BookViewModel bookViewModel)
         {
             if (ModelState.IsValid)
             {
-                BookBL bookBL = new BookBL();
-                Book book = new Book();
                 book.BookId = bookViewModel.BookId;
                 book.Author = bookViewModel.Author;
                 book.Name = bookViewModel.Name;
                 book.Subject = bookViewModel.Subject;
                 bookBL.AddMethod(book);
                 TempData["Message"] = "Book Added Successfully!";
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Some error occured");
-            }
-            using (LibraryManagementContext db = new LibraryManagementContext())
-            {
-                List<Category> categories = db.Categorys.ToList();
+                List<Category> categories = bookBL.BindCategory();
                 ViewBag.categories = new SelectList(categories, "CategoryId", "CategoryName");
+                return RedirectToAction("BookDetails");
+            }
+            //else
+            //{
+            //    ModelState.AddModelError("", "Some error occured");
+            //}
+            return View();
+        }
+
+        [HandleError]
+        [HttpPost]
+        public ActionResult Edit(BookViewModel bookViewModel)
+        {
+            if (book != null)
+            {
+                book.Author = bookViewModel.Author;
+                book.BookId = bookViewModel.BookId;
+                book.Name = bookViewModel.Name;
+                book.Subject = bookViewModel.Subject;
+                bookBL.Update(book);
+                List<Category> categorys = bookBL.BindCategory();
+                ViewBag.categories = new SelectList(categorys, "CategoryId", "CategoryName");
+                return RedirectToAction("BookDetails");
             }
             return View();
         }
-        [HttpPost]
-        public ActionResult DeleteBook(int bookId)
-        {
-            BookBL bookBL = new BookBL();
-            Book book = new Book();
-            bookBL.DeleteBook(bookId);
-            TempData["Message"] = "Book Deleted Successfully!";
-            return RedirectToAction("Index");
-        }
-        [HttpPost]
-        public ActionResult Edit(int bookId)
-        {
-            BookBL bookBL = new BookBL();
-            Book book = new Book();
-            bookBL.Edit(bookId);
-            return RedirectToAction("BookDetails");
-        }
-        
-        //public ActionResult UpdateBook(int bookId)
-        //{
-        //    BookBL bookBL = new BookBL();
-        //    Book book = new Book();
-        //    bookBL.UpdateBook(bookId);
-        //    TempData["Message"] = "Book Details Updated Successfully";
-        //    return RedirectToAction("BookDetails");
-        //}
     }
 }

@@ -7,7 +7,7 @@ namespace LibraryManagement.Models
     public class BookViewModel
     {
         [Required]
-        public int BookId { get; internal set; }
+        public int BookId { get;  set; }
         [Display(Name = "Author")]
         [Required]
         public string Author { get; set; }

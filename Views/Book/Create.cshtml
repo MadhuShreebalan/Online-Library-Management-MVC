@@ -28,7 +28,7 @@
         text-align: center;
     }
 </style>
-<h2 style="text-align:center" ;>Create</h2>
+<h2>Create</h2>
 
 @using (Html.BeginForm("Create", "Book", FormMethod.Post))
 {
@@ -62,10 +62,10 @@
         </td>
     </tr>
     <tr>
-            <td>@Html.DisplayFor(Model => Model.CategoryId)</td>
+            <td>@Html.DisplayFor(Model => Model.BookId)</td>
             <td>
               @*  @Html.TextBoxFor(Model => Model.CategoryId)*@
-                @Html.DropDownListFor(Model => Model.CategoryId, ViewBag.Categories as IEnumerable<SelectListItem>)
+                @Html.DropDownListFor(Model => Model.BookId, ViewBag.Categories as IEnumerable<SelectListItem>)
             </td>
         </tr>
     <tr>

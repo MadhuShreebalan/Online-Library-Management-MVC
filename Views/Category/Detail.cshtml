@@ -1,4 +1,4 @@
-﻿@model LibraryManagement.Entity.Category
+﻿@model  IEnumerable<LibraryManagement.Entity.Category>
 
 @{
     ViewBag.Title = "Detail";
@@ -19,5 +19,17 @@
         <th></th>
     </tr>
 
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.CategoryName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.CategoryDescription)
+            </td>
+        </tr>
+    }
 </table>

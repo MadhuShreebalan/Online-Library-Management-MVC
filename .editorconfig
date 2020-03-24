@@ -1,4 +1,4 @@
-﻿[*.{cs,vb}]
+﻿[*.cs]
 
-# IDE0046: Convert to conditional expression
-dotnet_style_prefer_conditional_expression_over_return = false:silent
+# IDE0055: Fix formatting
+dotnet_diagnostic.IDE0055.severity = none

@@ -19,9 +19,9 @@
 </style>
 
 <h2>Edit</h2>
-@using (Html.BeginForm("UpdateBook", "Index", FormMethod.Post))
+@using (Html.BeginForm("Edit", "Book", FormMethod.Post))
 {
-   // @Html.HiddenFor(Model => Model.Id);
+    @Html.HiddenFor(Model => Model.BookId);
     <table>
         <tr>
             <td> Name : </td>
@@ -33,14 +33,17 @@
         </tr>
         <tr>
             <td>Subject: </td>
-            <td>@Html.TextBoxFor(Model => Model.Subject)</td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Subject)
+                        @Html.DropDownListFor(Model => Model.BookId, ViewBag.Categories as IEnumerable<SelectListItem>)
+                    </td>
         </tr>
         
         <tr>
             <td>
                 <input type="submit" value="Update" />
             </td>
-            <td><a href="/Index">Back</a></td>
+            <td><a href="Create">Back</a></td>
         </tr>
     </table>
 }

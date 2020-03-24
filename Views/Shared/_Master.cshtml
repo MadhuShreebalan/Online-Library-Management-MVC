@@ -12,10 +12,32 @@
             <div class="navbar" style="color:darkseagreen">
                 <ul>
                     <li class="list">
-                        @Html.ActionLink("Library Management", "Index", "Admin")
-                        </li>
+                        @Html.ActionLink("Sign Up", "Signup", "Account")
+                    </li>
+                    
                     <li class="list">
-                        @Html.ActionLink("Login", "Login", "Account")
+                        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                        {
+                            @Html.ActionLink("Logout", "LogOut", "Account", " ", new { @class = "LinkColor" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Login", "Login", "Account", " ", new { @class = "LinkColor" })
+                        }
+
+                        @if (HttpContext.Current.User.IsInRole("Admin"))
+                        {
+
+                            @Html.ActionLink("AddBook ", "Create", "Book", " ", new { @class = "LinkColor" })
+                            @Html.ActionLink("Books ", "BookDetails", "Book", " ", new { @class = "LinkColor" })
+                            @Html.ActionLink("Addcategory ", "AddCategory", "Category", " ", new { @class = "LinkColor" })
+                            @*@Html.ActionLink("ViewUser", "ViewUser", "Admin", "", new { @class = "LinkColor" })*@
+                        }
+                        @if (HttpContext.Current.User.IsInRole("User"))
+                        {
+                            @Html.ActionLink("Categories", "CategoryDetails", "Category", "", new { @class = "LinkColor" })
+                            @Html.ActionLink("Books", "BookDetails", "Book", "", new { @class = "LinkColor" })
+                        }
                     </li>
                 </ul>
             </div>

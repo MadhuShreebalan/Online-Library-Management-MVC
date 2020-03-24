@@ -14,7 +14,6 @@
     }
 
     table, th, td {
-       
         padding: 5px;
         width: 5px;
         background-color: burlywood;
@@ -24,38 +23,38 @@
         text-align: center;
     }
 </style>
-@using(Html.BeginForm("SignUp","Account",FormMethod.Post))
+@using (Html.BeginForm("SignUp", "Account", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-<table align="center">
-    <tr>
-        <td>@Html.LabelFor(Model => Model.EmailId)</td>
-        <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
+    <table align="center">
+        <tr>
+            <td>@Html.LabelFor(Model => Model.EmailId)</td>
+            <td>@Html.TextBoxFor(Model => Model.EmailId)</td>
 
-    </tr>
+        </tr>
 
-    <tr>
-        <td>@Html.LabelFor(Model => Model.Password)</td>
-        <td>@Html.TextBoxFor(Model => Model.Password)</td>
-    </tr>
+        <tr>
+            <td>@Html.LabelFor(Model => Model.Password)</td>
+            <td>@Html.TextBoxFor(Model => Model.Password)</td>
+        </tr>
 
-    <tr>
-        <td>@Html.LabelFor(Model => Model.Department)</td>
-        <td>@Html.TextBoxFor(Model => Model.Department)</td>
-    </tr>
-    <tr>
-        <td>@Html.LabelFor(Model => Model.Phone)</td>
-        <td>@Html.TextBoxFor(Model => Model.Phone)</td>
-    </tr>
+        <tr>
+            <td>@Html.LabelFor(Model => Model.Department)</td>
+            <td>@Html.TextBoxFor(Model => Model.Department)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(Model => Model.Phone)</td>
+            <td>@Html.TextBoxFor(Model => Model.Phone)</td>
+        </tr>
 
 
-    <tr>
-        <td>
-            <input type="submit" value="Create" />
-        </td>
-        <td> @Html.ActionLink("back", "Login", "Account")</td>
-    </tr>
-</table>
+        <tr>
+            <td>
+                <input type="submit" value="Create" />
+            </td>
+            <td> @Html.ActionLink("back", "Login", "Account")</td>
+        </tr>
+    </table>
 
 }
 
