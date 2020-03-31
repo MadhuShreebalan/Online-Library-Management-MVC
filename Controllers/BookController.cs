@@ -2,6 +2,7 @@
 using LibraryManagement.Entity;
 using LibraryManagement.BL;
 using System.Collections.Generic;
+using AutoMapper;
 
 namespace LibraryManagement.Models
 {
@@ -13,15 +14,16 @@ namespace LibraryManagement.Models
 
         public ActionResult Create()
         {
-            List<Category> categorys = bookBL.BindCategory();
-            ViewBag.categories = new SelectList(categorys, "CategoryId", "CategoryName");
+            var categorys = bookBL.BindCategory();
+            ViewBag.Mycategory = new SelectList(categorys, "CategoryId", "CategoryName");
             return View();
         }
+
         public ActionResult Edit(int id)
         {
             book = bookBL.GetBook(id);
-            List<Category> categorys = bookBL.BindCategory();
-            ViewBag.categories = new SelectList(categorys, "CategoryId", "CategoryName");
+            var Categorys = bookBL.BindCategory();
+            ViewBag.Mycategory = new SelectList(Categorys, "CategoryId", "CategoryName");
             return View(book);
         }
         public ActionResult BookDetails()
@@ -38,38 +40,43 @@ namespace LibraryManagement.Models
         [HttpPost]
         public ActionResult Create(BookViewModel bookViewModel)
         {
+
             if (ModelState.IsValid)
             {
-                book.BookId = bookViewModel.BookId;
-                book.Author = bookViewModel.Author;
-                book.Name = bookViewModel.Name;
-                book.Subject = bookViewModel.Subject;
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<BookViewModel, Book>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var book = mapper.Map<BookViewModel, Book>(bookViewModel);
+                var Categorys = bookBL.BindCategory();
+                ViewBag.Mycategory = new SelectList(Categorys, "CategoryId", "CategoryName");
                 bookBL.AddMethod(book);
-                TempData["Message"] = "Book Added Successfully!";
-                List<Category> categories = bookBL.BindCategory();
-                ViewBag.categories = new SelectList(categories, "CategoryId", "CategoryName");
+                    
                 return RedirectToAction("BookDetails");
             }
-            //else
-            //{
-            //    ModelState.AddModelError("", "Some error occured");
-            //}
+            else
+            {
+                ModelState.AddModelError("", "Some error occured");
+            }
             return View();
         }
 
-        [HandleError]
         [HttpPost]
         public ActionResult Edit(BookViewModel bookViewModel)
         {
             if (book != null)
             {
-                book.Author = bookViewModel.Author;
-                book.BookId = bookViewModel.BookId;
-                book.Name = bookViewModel.Name;
-                book.Subject = bookViewModel.Subject;
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<BookViewModel, Book>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var book = mapper.Map<BookViewModel, Book>(bookViewModel);
+                var Categorys = bookBL.BindCategory();
+                ViewBag.Mycategory = new SelectList(Categorys, "CategoryId", "CategoryName");
                 bookBL.Update(book);
-                List<Category> categorys = bookBL.BindCategory();
-                ViewBag.categories = new SelectList(categorys, "CategoryId", "CategoryName");
+                
                 return RedirectToAction("BookDetails");
             }
             return View();

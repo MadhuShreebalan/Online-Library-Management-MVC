@@ -4,7 +4,7 @@ namespace LibraryManagement.Models
 {
     public class SignupViewModel
     {
-       [Required]
+        [Required]
         public int AccountId { get; set; }
 
         [Required]
@@ -21,6 +21,6 @@ namespace LibraryManagement.Models
 
         [Required]
         [DataType(DataType.PhoneNumber)]
-        public string Phone { get; set; }
+        public long Phone { get; set; }
     }
 }

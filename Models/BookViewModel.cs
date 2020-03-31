@@ -1,23 +1,28 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LibraryManagement.Models
 {
-    [Table("TableBooks")]
     public class BookViewModel
     {
         [Required]
         public int BookId { get;  set; }
+
         [Display(Name = "Author")]
         [Required]
+        [MaxLength(30)]
         public string Author { get; set; }
+
         [Display(Name = "Name")]
+        [MaxLength(30)]
         [Required]
         public string Name { get; set; }
 
+        [Required]
         [Display(Name = "Subject")]
-        [StringLength(20)]
+        [MaxLength(50)]
         public string Subject { get; set; }
+
+        
  
     }
 }

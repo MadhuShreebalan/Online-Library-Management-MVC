@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using LibraryManagement.BL;
 using LibraryManagement.Entity;
 using AutoMapper;
@@ -11,7 +10,6 @@ namespace LibraryManagement.Models
 {
     public class AccountController : Controller
     {
-       
         IAccountBL accountBL;
         public AccountController()
         {
@@ -19,7 +17,7 @@ namespace LibraryManagement.Models
         }
 
         [HttpGet]
-       // [AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -28,7 +26,7 @@ namespace LibraryManagement.Models
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult Login(LoginViewModel loginViewModel)
         {
             var config = new MapperConfiguration(mapping =>
@@ -37,16 +35,11 @@ namespace LibraryManagement.Models
             });
             IMapper mapper = config.CreateMapper();
             var account = mapper.Map<LoginViewModel, Account>(loginViewModel);
-            //AccountBL accountBl = new AccountBL();
-            //Account user = new Account();
-            //user.EmailId = loginViewModel.EmailId;
-            //user.Password = loginViewModel.Password;
-            //user.Role = "User";
             var accountDetails = accountBL.Login(account);
+            
             if (accountDetails != null)
             {// for admin
                 FormsAuthentication.SetAuthCookie(account.EmailId, false);
-
                 var authTicket = new FormsAuthenticationTicket(1, account.EmailId, DateTime.Now, DateTime.Now.AddMinutes(20), false, accountDetails.Role);
                 string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
@@ -55,15 +48,11 @@ namespace LibraryManagement.Models
             }
             else
             {
-
-                {
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(account);
-
-                }
             }
-
         }
+
         public ActionResult LogOut()
         {
             FormsAuthentication.SignOut();
@@ -71,14 +60,15 @@ namespace LibraryManagement.Models
         }
 
         [HttpGet]
-      //  [AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult Signup()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-       // [AllowAnonymous]
+        [AllowAnonymous]
         public ActionResult Signup(SignupViewModel signupViewModel)
         {
             try {
@@ -90,15 +80,8 @@ namespace LibraryManagement.Models
                     });
                     IMapper mapper = config.CreateMapper();
                     Account account= mapper.Map<SignupViewModel, Account>(signupViewModel);
-                    //Account account = new Account();
-                    //account.AccountId = signupViewModel.AccountId;
-                    //account.Department = signupViewModel.Department;
-                    //account.EmailId = signupViewModel.EmailId;
-                    //account.Password = signupViewModel.Password;
-                    //account.Phone = signupViewModel.Phone;
                     account.Role = "User";
                     accountBL.AddMethod(account);
-                    //TempData["Message"] = "User signup details successfull";
                     return RedirectToAction("Login");
                 }
             }
@@ -107,14 +90,13 @@ namespace LibraryManagement.Models
                 View("Error");
             }
             return View();
-
         }
+
         [AllowAnonymous]
         public ActionResult Home()
         {
             return View();
         }
-
 
         //public ActionResult UserDetails()
         //{

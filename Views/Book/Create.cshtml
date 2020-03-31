@@ -61,11 +61,12 @@
             @Html.ValidationMessageFor(Model => Model.Subject)
         </td>
     </tr>
+    
+            @*<td>@Html.DisplayFor(Model => Model.BookId)</td>*@
     <tr>
-            <td>@Html.DisplayFor(Model => Model.BookId)</td>
             <td>
-              @*  @Html.TextBoxFor(Model => Model.CategoryId)*@
-                @Html.DropDownListFor(Model => Model.BookId, ViewBag.Categories as IEnumerable<SelectListItem>)
+              @*  @Html.LabelFor(Model => Model.CategoryId)*@
+                @Html.DropDownListFor(item => item.CategoryId, ViewBag.Mycategory as IEnumerable<SelectListItem>,"--Select Category--")
             </td>
         </tr>
     <tr>

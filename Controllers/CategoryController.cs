@@ -3,7 +3,7 @@ using LibraryManagement.Entity;
 using LibraryManagement.Models;
 using System.Web.Mvc;
 using System.Collections.Generic;
-
+using AutoMapper;
 namespace LibraryManagement.Controllers
 {
     public class CategoryController : Controller
@@ -14,14 +14,18 @@ namespace LibraryManagement.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult AddCategory(CategoryViewModel categoryViewModel)
         {
             if (ModelState.IsValid)
             {
-                category.CategoryId = categoryViewModel.CategoryId;
-                category.CategoryName = categoryViewModel.CategoryName;
-                category.CategoryDescription = categoryViewModel.CategoryDescription;
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<CategoryViewModel, Category>();
+                });
+                IMapper mapper = config.CreateMapper();
+                Category category = mapper.Map<CategoryViewModel, Category>(categoryViewModel);
                 categoryBL.AddCategory(category);
                 return RedirectToAction("CategoryDetails");
             }
@@ -31,22 +35,22 @@ namespace LibraryManagement.Controllers
             }
             return View();
         }
+
         public ActionResult CategoryDetails()
         {
-                List<Category> categories= categoryBL.CategoryDetails();
-                return View(categories);
+            List<Category> categories = categoryBL.CategoryDetails();
+            return View(categories);
         }
 
         public ActionResult Detail(int id)
         {
-                return View(category);
-            
+            return View(category);
         }
 
         public ActionResult Delete(int id)
         {
-                categoryBL.DeleteCategory(id);
-                return RedirectToAction("CategoryDetails");
+            categoryBL.DeleteCategory(id);
+            return RedirectToAction("CategoryDetails");
         }
 
         public ActionResult Edit(int id)
@@ -58,14 +62,17 @@ namespace LibraryManagement.Controllers
         [HttpPost]
         public ActionResult Edit(CategoryViewModel categoryViewModel)
         {
-                    if (category != null)
-                    {
-                        category.CategoryId = categoryViewModel.CategoryId;
-                        category.CategoryName = categoryViewModel.CategoryName;
-                        category.CategoryDescription = categoryViewModel.CategoryDescription;
-                        categoryBL.Update(category);
-                        return RedirectToAction("CategoryDetails");
-                    }
+            if (category != null)
+            {
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<CategoryViewModel, Category>();
+                });
+                IMapper mapper = config.CreateMapper();
+                Category category = mapper.Map<CategoryViewModel, Category>(categoryViewModel);
+                categoryBL.Update(category);
+                return RedirectToAction("CategoryDetails");
+            }
             return View();
         }
 

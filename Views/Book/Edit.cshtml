@@ -35,7 +35,7 @@
             <td>Subject: </td>
             <td>
                 @Html.TextBoxFor(Model => Model.Subject)
-                        @Html.DropDownListFor(Model => Model.BookId, ViewBag.Categories as IEnumerable<SelectListItem>)
+                        @Html.DropDownListFor(Model => Model.BookId, ViewBag.category as IEnumerable<SelectListItem>,"-- Select Category--")
                     </td>
         </tr>
         
